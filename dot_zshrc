@@ -7,6 +7,10 @@ if [ ! -s "$ZINIT_HOME" ]; then
 	git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
+# Add Dotnet to the path
+path=('~/.dotnet/tools' $path)
+export PATH
+
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
@@ -59,6 +63,24 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # Aliases
 alias ls='ls --color'
 alias c='clear'
+
+# Integrate Dotnet into ZSH
+_dotnet_zsh_complete()
+{
+  local completions=("$(dotnet complete "$words")")
+
+  # If the completion list is empty, just continue with filename selection
+  if [ -z "$completions" ]
+  then
+    _arguments '*::arguments: _normal'
+    return
+  fi
+
+  # This is not a variable assignment, don't remove spaces!
+  _values = "${(ps:\n:)completions}"
+}
+
+compdef _dotnet_zsh_complete dotnet
 
 # Shell integrations
 eval "$(fzf --zsh)"

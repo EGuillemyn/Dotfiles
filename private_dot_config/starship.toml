@@ -6,6 +6,7 @@ $git_branch\
 $git_state\
 $git_status\
 $git_metrics\
+$dotnet\
 $fill\
 $cmd_duration $jobs $time\
 $line_break\
@@ -54,10 +55,12 @@ style = "yellow"
 [memory_usage]
 symbol = " "
 
-[rust]
-symbol = " "
-
 [time]
 disabled = false
 style = "bold white"
 format = "[$time]($style)"
+
+[dotnet]
+format = "via [$symbol($version )(🎯 $tfm )]($style)"
+version_format = "v${raw}"
+symbol = "dotnet "
