@@ -85,8 +85,3 @@ compdef _dotnet_zsh_complete dotnet
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
-
-# Run Fastfetch
-if [[ -o interactive ]]; then
-    fastfetch
-fi
