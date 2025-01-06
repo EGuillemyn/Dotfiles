@@ -77,6 +77,11 @@ button:hover {
   padding-right: 4px;
 }
 
+#memory, #cpu {
+    color: @white;
+    border-bottom: 2px solid @white;
+}
+
 #clock {
     color: @maroon;
     border-bottom: 2px solid @maroon;
